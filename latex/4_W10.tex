@@ -1,0 +1,37 @@
+\chapter{W10}
+\section{心得}
+41023247:
+
+提供github之gist放置w10第一題作業程式碼，供組員方便作業
+
+41023254:
+
+協助組員建立Brython 程式環境，傳送至組員群組，方便組員作業
+
+41023234:
+
+幫忙尋找和解析Brython 程式環境，和亂數生成
+\section{隨機抽組別}
+\begin{lstlisting}[language=Python, frame=single, numbers=left, captionpos=b, basicstyle=\ttfamily\small, showstringspaces=false, breaklines=true, tabsize=4, xleftmargin=15pt]
+from browser import html, document
+import random
+
+bcd_tem = "https://mdecd2023.github.io/2b2-pj2bg"
+bgithub = "https://github.com/mdecd2023/2b2-pj2bg"
+brython_div = document["brython_div1"]
+
+# generate random list from 1 to 16
+grp = []
+for i in range(1, 17):
+    grp.append(i)
+random.shuffle(grp)
+
+for i in grp:
+    url = bcd_tem + str(i)
+    github = bgithub + str(i)
+    brython_div <= html.A("pj2bg"+str(i), href=url)
+    brython_div <= " ("
+    brython_div <= html.A("repo", href=github)
+    brython_div <= ")"
+    brython_div <= html.BR()
+\end{lstlisting}
