@@ -1,5 +1,357 @@
 \chapter{PJ3}
 
+\section{程式}
+
+操控球員程式:
+\begin{lstlisting}[language=Python, frame=single, numbers=left, captionpos=b, basicstyle=\ttfamily\small, showstringspaces=false, breaklines=true, tabsize=4, xleftmargin=15pt]
+# pip install pyzmq cbor keyboard
+from zmqRemoteApi_IPv6 import RemoteAPIClient
+import keyboard
+ 
+client = RemoteAPIClient('localhost', 23000)
+ 
+print('Program started')
+sim = client.getObject('sim')
+ 
+ 
+ 
+sim.startSimulation()
+print('Simulation started')
+ 
+def setBubbleRobVelocity(leftWheelVelocity1, rightWheelVelocity1, leftWheelVelocity2, rightWheelVelocity2):
+    leftMotor1 = sim.getObject('/81')
+    rightMotor1 = sim.getObject('/82')
+    leftMotor2 = sim.getObject('/83')
+    rightMotor2 = sim.getObject('/84')
+    sim.setJointTargetVelocity(leftMotor1, leftWheelVelocity1)
+    sim.setJointTargetVelocity(rightMotor1, rightWheelVelocity1)
+    sim.setJointTargetVelocity(leftMotor2, leftWheelVelocity2)
+    sim.setJointTargetVelocity(rightMotor2, rightWheelVelocity2)
+    
+ 
+'''
+# Example usage 1:
+setBubbleRobVelocity(1.0, 1.0)
+time.sleep(2)
+setBubbleRobVelocity(0.0, 0.0)
+'''
+# use keyborad to move BubbleRob
+ 
+while True:
+    if keyboard.is_pressed('up'):
+        setBubbleRobVelocity(15.0, 15.0, 15.0, 15.0)
+    elif keyboard.is_pressed('down'):
+        setBubbleRobVelocity(-15.0, -15.0, -15.0, -15.0)
+    elif keyboard.is_pressed('left'):
+        setBubbleRobVelocity(-5.0, 5.0, -5.0, 5.0)
+    elif keyboard.is_pressed('right'):
+        setBubbleRobVelocity(5.0, -5.0, 5.0, -5.0)
+    elif keyboard.is_pressed('q'):
+        # stop simulation
+        sim.stopSimulation()
+    else:
+        setBubbleRobVelocity(0.0, 0.0, 0.0, 0.0)
+\end{lstlisting}
+
+
+\begin{lstlisting}[language=Python, frame=single, numbers=left, captionpos=b, basicstyle=\ttfamily\small, showstringspaces=false, breaklines=true, tabsize=4, xleftmargin=15pt]
+from zmqRemoteApi_IPv6 import RemoteAPIClient
+import time
+import math
+import keyboard
+ 
+client = RemoteAPIClient('localhost', 23000)
+sim = client.getObject('sim')
+sensor = sim.getObject('/Floor/G/sensor2')
+sensor1 = sim.getObject('/Floor/R/sensor1')
+ib = sim.getObject('/IB')
+ib2 = sim.getObject('/IB/IB')
+ib3 = sim.getObject('/IB/ib0')
+ib4 = sim.getObject('/IB/ib1')
+ib5 = sim.getObject('/IB/ib2')
+ib6 = sim.getObject('/IB/ib3')
+ib7 = sim.getObject('/IB/ib4')
+ib8 = sim.getObject('/IB/ib5')
+ib9 = sim.getObject('/IB/ib6')
+ 
+red1 = sim.getObject('/r1/r1')
+red2 = sim.getObject('/r2/r2')
+red3 = sim.getObject('/r3/r3')
+red4 = sim.getObject('/r4/r4')
+ 
+green1 = sim.getObject('/g1/g1')
+green2 = sim.getObject('/g2/g2')
+green3 = sim.getObject('/g3/g3')
+green4 = sim.getObject('/g4/g4')
+ 
+last_sensor_touch = None
+print(last_sensor_touch)
+ 
+ball = sim.getObject('/ball')
+joint1 = sim.getObject('/joint1')
+joint2 = sim.getObject('/joint2')
+joint3 = sim.getObject('/joint3')
+joint4 = sim.getObject('/joint4')
+counter1 = 0
+counter = 0
+ 
+result = sim.readProximitySensor(sensor)
+result1 = sim.readProximitySensor(sensor1)
+print("team green", counter1)
+print("team red", counter)
+sim.setShapeColor(ib, None, sim.colorcomponent_ambient_diffuse, [0, 0, 1])
+sim.setShapeColor(ib2, None, sim.colorcomponent_ambient_diffuse, [0, 0, 1])
+sim.setShapeColor(ib3, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+sim.setShapeColor(ib4, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+sim.setShapeColor(ib5, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+sim.setShapeColor(ib6, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+sim.setShapeColor(ib7, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+sim.setShapeColor(ib8, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+sim.setShapeColor(ib9, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+ 
+last_executed_multiple = 0
+t = 600
+s = [
+    [1, 1, 1, 0, 1, 1, 1],
+    [0, 0, 1, 0, 0, 1, 0],
+    [1, 0, 1, 1, 1, 0, 1],
+    [1, 0, 1, 1, 0, 1, 1],
+    [0, 1, 1, 1, 0, 1, 0],
+    [1, 1, 0, 1, 0, 1, 1],
+    [1, 1, 0, 1, 1, 1, 1],
+    [1, 0, 1, 0, 0, 1, 0],
+    [1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 0, 1, 1]
+]
+ 
+ 
+def score(x, y):
+    for i in range(10):
+        if x == i:
+            for j in range(7):
+                part = sim.getObject('/scoreboard/' + y + str(j))
+                if s[i][j] == 1:
+                    sim.setShapeColor(part, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+                else:
+                    sim.setShapeColor(part, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+ 
+ 
+ 
+ 
+def sysCall_actuation():
+    global t
+    minutes = math.floor(t / 60)
+    seconds = t % 60
+    t1 = math.floor(minutes / 10)
+    t2 = minutes % 10
+    t3 = math.floor(seconds / 10)
+    t4 = seconds % 10
+     
+    score(t1, 'a')
+    score(t2, 'b')
+    score(t3, 'c')
+    score(t4, 'd')
+ 
+     
+    t -= 1
+    if t < 0:
+        sim.pauseSimulation()
+    p = sim.getSimulationState()
+    if p == 22:
+        score(0, 'a')
+        score(0, 'b')
+        score(0, 'c')
+        score(0, 'd')
+ 
+ 
+while t >= 0:
+    resultred1 = sim.readProximitySensor(red1)
+    resultred2 = sim.readProximitySensor(red2)
+    resultred3 = sim.readProximitySensor(red3)
+    resultred4 = sim.readProximitySensor(red4)
+    resultgreen1 = sim.readProximitySensor(green1)
+    resultgreen2 = sim.readProximitySensor(green2)
+    resultgreen3 = sim.readProximitySensor(green3)
+    resultgreen4 = sim.readProximitySensor(green4)
+    _, detection_statered1, _, _, _ = resultred1
+    _, detection_statered2, _, _, _ = resultred2
+    _, detection_statered3, _, _, _ = resultred3
+    _, detection_statered4, _, _, _ = resultred4
+    _, detection_stategreen1, _, _, _ = resultgreen1
+    _, detection_stategreen2, _, _, _ = resultgreen2
+    _, detection_stategreen3, _, _, _ = resultgreen3
+    _, detection_stategreen4, _, _, _ = resultgreen4
+    if detection_statered1:
+        last_sensor_touch = 'red1'
+        sim.setShapeColor(ib, None, sim.colorcomponent_ambient_diffuse, [1, 0, 0])
+        sim.setShapeColor(ib2, None, sim.colorcomponent_ambient_diffuse, [1, 0, 0])
+        sim.setShapeColor(ib3, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib4, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib5, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib6, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib7, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib8, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib9, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+ 
+    elif detection_statered2:
+        last_sensor_touch = 'red2'
+        sim.setShapeColor(ib, None, sim.colorcomponent_ambient_diffuse, [1, 0, 0])
+        sim.setShapeColor(ib2, None, sim.colorcomponent_ambient_diffuse, [1, 0, 0])
+        sim.setShapeColor(ib3, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib4, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib5, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib6, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib7, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib8, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib9, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+ 
+    elif detection_statered3:
+        last_sensor_touch = 'red3'
+        sim.setShapeColor(ib, None, sim.colorcomponent_ambient_diffuse, [1, 0, 0])
+        sim.setShapeColor(ib2, None, sim.colorcomponent_ambient_diffuse, [1, 0, 0])
+        sim.setShapeColor(ib3, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib4, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib5, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib6, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib7, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib8, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib9, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+ 
+    elif detection_statered4:
+        last_sensor_touch = 'red4'
+        sim.setShapeColor(ib, None, sim.colorcomponent_ambient_diffuse, [1, 0, 0])
+        sim.setShapeColor(ib2, None, sim.colorcomponent_ambient_diffuse, [1, 0, 0])
+        sim.setShapeColor(ib3, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib4, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib5, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib6, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib7, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib8, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib9, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+ 
+    elif detection_stategreen1:
+        last_sensor_touch = 'green1'
+        sim.setShapeColor(ib, None, sim.colorcomponent_ambient_diffuse, [0, 1, 0])
+        sim.setShapeColor(ib2, None, sim.colorcomponent_ambient_diffuse, [0, 1, 0])
+        sim.setShapeColor(ib3, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib4, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib5, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib6, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib7, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib8, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib9, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+ 
+    elif detection_stategreen2:
+        last_sensor_touch = 'green2'
+        sim.setShapeColor(ib, None, sim.colorcomponent_ambient_diffuse, [0, 1, 0])
+        sim.setShapeColor(ib2, None, sim.colorcomponent_ambient_diffuse, [0, 1, 0])
+        sim.setShapeColor(ib3, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib4, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib5, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib6, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib7, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib8, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib9, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+     
+    elif detection_stategreen3:
+        last_sensor_touch = 'green3'
+        sim.setShapeColor(ib, None, sim.colorcomponent_ambient_diffuse, [0, 1, 0])
+        sim.setShapeColor(ib2, None, sim.colorcomponent_ambient_diffuse, [0, 1, 0])
+        sim.setShapeColor(ib3, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib4, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib5, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib6, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib7, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib8, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib9, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+ 
+    elif detection_stategreen4:
+        last_sensor_touch = 'green4'
+        sim.setShapeColor(ib, None, sim.colorcomponent_ambient_diffuse, [0, 1, 0])
+        sim.setShapeColor(ib2, None, sim.colorcomponent_ambient_diffuse, [0, 1, 0])
+        sim.setShapeColor(ib3, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib4, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib5, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib6, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib7, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib8, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib9, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+ 
+    print(last_sensor_touch)
+ 
+    result = sim.readProximitySensor(sensor)
+    _, detection_state, _, _, _ = result
+    if detection_state:
+        print("GOAL！")
+        print("Player", last_sensor_touch, "GOAL!")
+        counter1 += 1
+        print("team red", counter1)
+        sim.setObjectPosition(ball, -1, [0, 0, 0.5])
+        target_angle = math.radians(36)
+        current_angle = sim.getJointPosition(joint1)
+        new_angle = current_angle + target_angle
+        sim.setJointTargetPosition(joint1, new_angle)
+        time.sleep(1)
+        sim.setShapeColor(ib, None, sim.colorcomponent_ambient_diffuse, [0, 0, 1])
+        sim.setShapeColor(ib2, None, sim.colorcomponent_ambient_diffuse, [0, 0, 1])
+        sim.setShapeColor(ib3, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib4, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib5, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib6, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib7, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib8, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib9, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        if counter1 > 1 and counter1 % 10 == 0 and counter1 != last_executed_multiple + 1:
+            target_angle = math.radians(36)
+            current_angle = sim.getJointPosition(joint2)
+            new_angle = current_angle + target_angle
+            sim.setJointTargetPosition(joint2, new_angle)
+            last_executed_multiple = counter1
+ 
+ 
+        continue
+ 
+    result1 = sim.readProximitySensor(sensor1)
+    _, detection_state1, _, _, _ = result1
+    if detection_state1:
+        print("GOAL！")
+        print("Player", last_sensor_touch, "GOAL!")
+        counter += 1
+        print("team green", counter)
+        sim.setObjectPosition(ball, -1, [0, 0, 0.5])
+        target_angle = math.radians(36)
+        current_angle = sim.getJointPosition(joint3)
+        new_angle = current_angle + target_angle
+        sim.setJointTargetPosition(joint3, new_angle)
+        time.sleep(1)
+        sim.setShapeColor(ib, None, sim.colorcomponent_ambient_diffuse, [0, 0, 1])
+        sim.setShapeColor(ib2, None, sim.colorcomponent_ambient_diffuse, [0, 0, 1])
+        sim.setShapeColor(ib3, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib4, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib5, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib6, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib7, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib8, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib9, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        if counter > 1 and counter % 10 == 0 and counter != last_executed_multiple + 1:
+            target_angle = math.radians(36)
+            current_angle = sim.getJointPosition(joint4)
+            new_angle = current_angle + target_angle
+            sim.setJointTargetPosition(joint4, new_angle)
+ 
+    time.sleep(0.01)
+    sysCall_actuation()
+ 
+ 
+while True:
+    time.sleep(1)
+    sysCall_actuation()
+    if keyboard.is_pressed('q'):
+        break
+ 
+print("Simulation Stop")
+print("time stop")
+\end{lstlisting}
 
 
 \section{記分板}
