@@ -1,0 +1,545 @@
+<!DOCTYPE html><html>
+        <head>
+        <title>pj3bg4</title>
+        <meta charset="utf-8">
+<meta property="head" content="H2">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
+        <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
+        <link rel="stylesheet" href="./../cmsimde/static/chimper/css/bootstrap.min.css">
+        <link rel="stylesheet" href="./../cmsimde/static/chimper/css/magnific-popup.css">
+        <link rel="stylesheet" href="./../cmsimde/static/chimper/css/jquery-ui.css">
+        <link rel="stylesheet" href="./../cmsimde/static/chimper/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="./../cmsimde/static/chimper/css/owl.theme.default.min.css">
+        <link rel="stylesheet" href="./../cmsimde/static/chimper/css/bootstrap-datepicker.css">
+        <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/flaticon/font/flaticon.css">
+        <link rel="stylesheet" href="./../cmsimde/static/chimper/css/aos.css">
+        <link rel="stylesheet" href="./../cmsimde/static/chimper/css/style.css">
+        <link rel="shortcut icon" href="./../cmsimde/static/favicons.png">
+        
+        <style type='text/css'>
+            .site-section {
+            background-color: #FFFF;
+            padding: 40px 40px;
+            }
+            body > div > div.dropdown.open {
+                display: block;
+            }
+        </style>
+    
+        <!-- <script src="./../cmsimde/static/jquery.js"></script> -->
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+        <script src="../cmsimde/static/chimper/js/jquery-3.3.1.min.js"></script>
+        <link rel="stylesheet" href="./../cmsimde/static/tipuesearch/css/normalize.min.css">
+        <script src="./../cmsimde/static/tipuesearch/tipuesearch_set.js"></script>
+        <script src="tipuesearch_content.js"></script>
+        <link rel="stylesheet" href="./../cmsimde/static/tipuesearch/css/tipuesearch.css">
+        <script src="./../cmsimde/static/tipuesearch/tipuesearch.js"></script>
+        <!-- for Wink3 客製化關閉 -->
+        <!--
+        <link rel="stylesheet" type="text/css" href="./../cmsimde/static/winkPlayer.css" />
+        <script type="text/javascript" src="./../cmsimde/static/winkPlayer.js"></script>
+        -->
+        <script>
+            /* original tipuesearch
+            $(document).ready(function() {
+                 $('#tipue_search_input').tipuesearch();
+            });
+            */
+            // customed doSearch
+            function doSearch() {
+                $('#tipue_search_input').tipuesearch({
+                    newWindow: true, 
+                    minimumLength: 2,
+                    wholeWords: false, // for search 中文
+                });
+            }
+            $(document).ready(doSearch);
+        </script>
+        
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shCore.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushBash.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushDiff.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushJScript.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushJava.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushPython.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushSql.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushHaxe.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushXml.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushPhp.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushPowerShell.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushLua.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushCpp.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushCss.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushCSharp.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushDart.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushRust.js"></script>
+<link type="text/css" rel="stylesheet" href="./../cmsimde/static/syntaxhighlighter/css/shCoreDefault.css"/>
+<script type="text/javascript">SyntaxHighlighter.all();</script>
+<!-- 暫時不用
+<script src="./../cmsimde/static/fengari-web.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/Cango-13v08-min.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/CangoAxes-4v01-min.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/gearUtils-05.js"></script>
+-->
+<!-- for Brython 暫時不用
+<script src="https://scrum-3.github.io/web/brython/brython.js"></script>
+<script src="https://scrum-3.github.io/web/brython/brython_stdlib.js"></script>
+-->
+<style>
+img.add_border {
+    border: 3px solid blue;
+}
+</style>
+
+</head>
+<body>
+<div class='container'><nav>
+        
+    <div class="site-wrap">
+
+    <div class="site-mobile-menu">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+    
+            <header class="site-navbar py-4 bg-white" role="banner">
+              <div class="container">
+                <div class="row align-items-center">
+                <h1>2b3-pj3bg4</h1>
+                <div class="pl-4">
+                    <form>
+                    <input type="text" placeholder="Search" name="q" id="tipue_search_input" pattern=".{2,}" title="At least 2 characters" required>
+                    </form>
+                </div>
+                  <!-- <div class="col-11 col-xl-2">
+                    <h1 class="mb-0 site-logo"><a href="index.html" class="text-black h2 mb-0">2b3-pj3bg4</a></h1> 
+                  </div>
+                  -->
+                  <div class="col-12 col-md-10 d-none d-xl-block">
+                    <nav class="site-navigation position-relative text-right" role="navigation">
+    <ul class='site-menu js-clone-nav mr-auto d-none d-lg-block'>
+                        <li class="active has-children"><a href="index.html">Home</a>
+                        <ul class="dropdown">
+                            <li><a href="sitemap.html">Site Map</a></li>
+                            <li><a href="./../reveal/index.html">reveal</a></li>
+                            <li><a href="./../blog/index.html">blog</a></li>
+                        </ul>
+                      </li>
+                     <li><a href='About.html'>About</a><li><a href='更新網站步驟.html'>更新網站步驟</a><li class='has-children'><a href='Instruction.html'>Instruction</a><ul class='dropdown'><li><a href='Cmd.html'>Cmd</a><li><a href='Git.html'>Git</a></li></ul><li class='has-children'><a href='Notes.html'>Notes</a><ul class='dropdown'><li><a href='acp時可用詞彙.html'>acp時可用詞彙</a><li><a href='overview.html'>overview</a></li></ul><li><a href='group.html'>group</a><li class='has-children'><a href='會議記錄.html'>會議記錄</a><ul class='dropdown'><li><a href='5月24.html'>5月24</a><li><a href='5月25.html'>5月25</a><li><a href='6月1.html'>6月1</a></li></ul><li><a href='分組報告.html'>分組報告</a><li class='has-children'><a href='pj3.html'>pj3</a><ul class='dropdown'><li><a href='程式.html'>程式</a><li><a href='記分板.html'>記分板</a><li><a href='球場.html'>球場</a><li><a href='球員.html'>球員</a></li></ul><li><a href='工作分配.html'>工作分配</a></li>
+                      </ul>
+                </nav>
+              </div>
+              <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black"><span class="icon-menu h3"></span></a></div>
+              </div>
+
+            </div>
+          </div>
+          
+        </header>
+    <div id="tipue_search_content">pj3 << <a href='pj3.html'>Previous</a> <a href='記分板.html'>Next</a> >> 記分板<br /><h1>程式</h1>
+<p><strong>操控球員程式:</strong></p>
+<p><strong></strong></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># pip install pyzmq cbor keyboard
+from zmqRemoteApi_IPv6 import RemoteAPIClient
+import keyboard
+
+client = RemoteAPIClient('localhost', 23000)
+
+print('Program started')
+sim = client.getObject('sim')
+
+
+
+sim.startSimulation()
+print('Simulation started')
+
+def setBubbleRobVelocity(leftWheelVelocity1, rightWheelVelocity1, leftWheelVelocity2, rightWheelVelocity2):
+    leftMotor1 = sim.getObject('/81')
+    rightMotor1 = sim.getObject('/82')
+    leftMotor2 = sim.getObject('/83')
+    rightMotor2 = sim.getObject('/84')
+    sim.setJointTargetVelocity(leftMotor1, leftWheelVelocity1)
+    sim.setJointTargetVelocity(rightMotor1, rightWheelVelocity1)
+    sim.setJointTargetVelocity(leftMotor2, leftWheelVelocity2)
+    sim.setJointTargetVelocity(rightMotor2, rightWheelVelocity2)
+   
+
+'''
+# Example usage 1:
+setBubbleRobVelocity(1.0, 1.0)
+time.sleep(2)
+setBubbleRobVelocity(0.0, 0.0)
+'''
+# use keyborad to move BubbleRob
+
+while True:
+    if keyboard.is_pressed('up'):
+        setBubbleRobVelocity(15.0, 15.0, 15.0, 15.0)
+    elif keyboard.is_pressed('down'):
+        setBubbleRobVelocity(-15.0, -15.0, -15.0, -15.0)
+    elif keyboard.is_pressed('left'):
+        setBubbleRobVelocity(-5.0, 5.0, -5.0, 5.0)
+    elif keyboard.is_pressed('right'):
+        setBubbleRobVelocity(5.0, -5.0, 5.0, -5.0)
+    elif keyboard.is_pressed('q'):
+        # stop simulation
+        sim.stopSimulation()
+    else:
+        setBubbleRobVelocity(0.0, 0.0, 0.0, 0.0)
+
+</pre>
+<p><strong>操控計分版、計時器、得分球員顯示器之程式:</strong></p>
+<p><strong></strong></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from zmqRemoteApi_IPv6 import RemoteAPIClient
+import time
+import math
+import keyboard
+
+client = RemoteAPIClient('localhost', 23000)
+sim = client.getObject('sim')
+sensor = sim.getObject('/Floor/G/sensor2')
+sensor1 = sim.getObject('/Floor/R/sensor1')
+ib = sim.getObject('/IB')
+ib2 = sim.getObject('/IB/IB')
+ib3 = sim.getObject('/IB/ib0')
+ib4 = sim.getObject('/IB/ib1')
+ib5 = sim.getObject('/IB/ib2')
+ib6 = sim.getObject('/IB/ib3')
+ib7 = sim.getObject('/IB/ib4')
+ib8 = sim.getObject('/IB/ib5')
+ib9 = sim.getObject('/IB/ib6')
+
+red1 = sim.getObject('/r1/r1')
+red2 = sim.getObject('/r2/r2')
+red3 = sim.getObject('/r3/r3')
+red4 = sim.getObject('/r4/r4')
+
+green1 = sim.getObject('/g1/g1')
+green2 = sim.getObject('/g2/g2')
+green3 = sim.getObject('/g3/g3')
+green4 = sim.getObject('/g4/g4')
+
+last_sensor_touch = None
+print(last_sensor_touch)
+
+ball = sim.getObject('/ball')
+joint1 = sim.getObject('/joint1')
+joint2 = sim.getObject('/joint2')
+joint3 = sim.getObject('/joint3')
+joint4 = sim.getObject('/joint4')
+counter1 = 0
+counter = 0
+
+result = sim.readProximitySensor(sensor)
+result1 = sim.readProximitySensor(sensor1)
+print("team green", counter1)
+print("team red", counter)
+sim.setShapeColor(ib, None, sim.colorcomponent_ambient_diffuse, [0, 0, 1])
+sim.setShapeColor(ib2, None, sim.colorcomponent_ambient_diffuse, [0, 0, 1])
+sim.setShapeColor(ib3, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+sim.setShapeColor(ib4, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+sim.setShapeColor(ib5, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+sim.setShapeColor(ib6, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+sim.setShapeColor(ib7, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+sim.setShapeColor(ib8, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+sim.setShapeColor(ib9, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+
+last_executed_multiple = 0
+t = 600
+s = [
+    [1, 1, 1, 0, 1, 1, 1],
+    [0, 0, 1, 0, 0, 1, 0],
+    [1, 0, 1, 1, 1, 0, 1],
+    [1, 0, 1, 1, 0, 1, 1],
+    [0, 1, 1, 1, 0, 1, 0],
+    [1, 1, 0, 1, 0, 1, 1],
+    [1, 1, 0, 1, 1, 1, 1],
+    [1, 0, 1, 0, 0, 1, 0],
+    [1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 0, 1, 1]
+]
+
+
+def score(x, y):
+    for i in range(10):
+        if x == i:
+            for j in range(7):
+                part = sim.getObject('/scoreboard/' + y + str(j))
+                if s[i][j] == 1:
+                    sim.setShapeColor(part, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+                else:
+                    sim.setShapeColor(part, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+
+
+
+
+def sysCall_actuation():
+    global t
+    minutes = math.floor(t / 60)
+    seconds = t % 60
+    t1 = math.floor(minutes / 10)
+    t2 = minutes % 10
+    t3 = math.floor(seconds / 10)
+    t4 = seconds % 10
+    
+    score(t1, 'a')
+    score(t2, 'b')
+    score(t3, 'c')
+    score(t4, 'd')
+
+    
+    t -= 1
+    if t &lt; 0:
+        sim.pauseSimulation()
+    p = sim.getSimulationState()
+    if p == 22:
+        score(0, 'a')
+        score(0, 'b')
+        score(0, 'c')
+        score(0, 'd')
+
+
+while t &gt;= 0:
+    resultred1 = sim.readProximitySensor(red1)
+    resultred2 = sim.readProximitySensor(red2)
+    resultred3 = sim.readProximitySensor(red3)
+    resultred4 = sim.readProximitySensor(red4)
+    resultgreen1 = sim.readProximitySensor(green1)
+    resultgreen2 = sim.readProximitySensor(green2)
+    resultgreen3 = sim.readProximitySensor(green3)
+    resultgreen4 = sim.readProximitySensor(green4)
+    _, detection_statered1, _, _, _ = resultred1
+    _, detection_statered2, _, _, _ = resultred2
+    _, detection_statered3, _, _, _ = resultred3
+    _, detection_statered4, _, _, _ = resultred4
+    _, detection_stategreen1, _, _, _ = resultgreen1
+    _, detection_stategreen2, _, _, _ = resultgreen2
+    _, detection_stategreen3, _, _, _ = resultgreen3
+    _, detection_stategreen4, _, _, _ = resultgreen4
+    if detection_statered1:
+        last_sensor_touch = 'red1'
+        sim.setShapeColor(ib, None, sim.colorcomponent_ambient_diffuse, [1, 0, 0])
+        sim.setShapeColor(ib2, None, sim.colorcomponent_ambient_diffuse, [1, 0, 0])
+        sim.setShapeColor(ib3, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib4, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib5, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib6, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib7, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib8, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib9, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+
+    elif detection_statered2:
+        last_sensor_touch = 'red2'
+        sim.setShapeColor(ib, None, sim.colorcomponent_ambient_diffuse, [1, 0, 0])
+        sim.setShapeColor(ib2, None, sim.colorcomponent_ambient_diffuse, [1, 0, 0])
+        sim.setShapeColor(ib3, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib4, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib5, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib6, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib7, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib8, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib9, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+
+    elif detection_statered3:
+        last_sensor_touch = 'red3'
+        sim.setShapeColor(ib, None, sim.colorcomponent_ambient_diffuse, [1, 0, 0])
+        sim.setShapeColor(ib2, None, sim.colorcomponent_ambient_diffuse, [1, 0, 0])
+        sim.setShapeColor(ib3, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib4, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib5, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib6, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib7, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib8, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib9, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+
+    elif detection_statered4:
+        last_sensor_touch = 'red4'
+        sim.setShapeColor(ib, None, sim.colorcomponent_ambient_diffuse, [1, 0, 0])
+        sim.setShapeColor(ib2, None, sim.colorcomponent_ambient_diffuse, [1, 0, 0])
+        sim.setShapeColor(ib3, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib4, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib5, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib6, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib7, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib8, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib9, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+
+    elif detection_stategreen1:
+        last_sensor_touch = 'green1'
+        sim.setShapeColor(ib, None, sim.colorcomponent_ambient_diffuse, [0, 1, 0])
+        sim.setShapeColor(ib2, None, sim.colorcomponent_ambient_diffuse, [0, 1, 0])
+        sim.setShapeColor(ib3, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib4, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib5, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib6, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib7, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib8, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib9, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+
+    elif detection_stategreen2:
+        last_sensor_touch = 'green2'
+        sim.setShapeColor(ib, None, sim.colorcomponent_ambient_diffuse, [0, 1, 0])
+        sim.setShapeColor(ib2, None, sim.colorcomponent_ambient_diffuse, [0, 1, 0])
+        sim.setShapeColor(ib3, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib4, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib5, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib6, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib7, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib8, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib9, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+    
+    elif detection_stategreen3:
+        last_sensor_touch = 'green3'
+        sim.setShapeColor(ib, None, sim.colorcomponent_ambient_diffuse, [0, 1, 0])
+        sim.setShapeColor(ib2, None, sim.colorcomponent_ambient_diffuse, [0, 1, 0])
+        sim.setShapeColor(ib3, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib4, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib5, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib6, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib7, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib8, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib9, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+
+    elif detection_stategreen4:
+        last_sensor_touch = 'green4'
+        sim.setShapeColor(ib, None, sim.colorcomponent_ambient_diffuse, [0, 1, 0])
+        sim.setShapeColor(ib2, None, sim.colorcomponent_ambient_diffuse, [0, 1, 0])
+        sim.setShapeColor(ib3, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib4, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib5, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib6, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib7, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib8, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib9, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+
+    print(last_sensor_touch)
+
+    result = sim.readProximitySensor(sensor)
+    _, detection_state, _, _, _ = result
+    if detection_state:
+        print("GOAL！")
+        print("Player", last_sensor_touch, "GOAL!")
+        counter1 += 1
+        print("team red", counter1)
+        sim.setObjectPosition(ball, -1, [0, 0, 0.5])
+        target_angle = math.radians(36)
+        current_angle = sim.getJointPosition(joint1)
+        new_angle = current_angle + target_angle
+        sim.setJointTargetPosition(joint1, new_angle)
+        time.sleep(1)
+        sim.setShapeColor(ib, None, sim.colorcomponent_ambient_diffuse, [0, 0, 1])
+        sim.setShapeColor(ib2, None, sim.colorcomponent_ambient_diffuse, [0, 0, 1])
+        sim.setShapeColor(ib3, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib4, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib5, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib6, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib7, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib8, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib9, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        if counter1 &gt; 1 and counter1 % 10 == 0 and counter1 != last_executed_multiple + 1:
+            target_angle = math.radians(36)
+            current_angle = sim.getJointPosition(joint2)
+            new_angle = current_angle + target_angle
+            sim.setJointTargetPosition(joint2, new_angle)
+            last_executed_multiple = counter1
+
+
+        continue
+
+    result1 = sim.readProximitySensor(sensor1)
+    _, detection_state1, _, _, _ = result1
+    if detection_state1:
+        print("GOAL！")
+        print("Player", last_sensor_touch, "GOAL!")
+        counter += 1
+        print("team green", counter)
+        sim.setObjectPosition(ball, -1, [0, 0, 0.5])
+        target_angle = math.radians(36)
+        current_angle = sim.getJointPosition(joint3)
+        new_angle = current_angle + target_angle
+        sim.setJointTargetPosition(joint3, new_angle)
+        time.sleep(1)
+        sim.setShapeColor(ib, None, sim.colorcomponent_ambient_diffuse, [0, 0, 1])
+        sim.setShapeColor(ib2, None, sim.colorcomponent_ambient_diffuse, [0, 0, 1])
+        sim.setShapeColor(ib3, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib4, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib5, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib6, None, sim.colorcomponent_ambient_diffuse, [0, 0, 0])
+        sim.setShapeColor(ib7, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib8, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        sim.setShapeColor(ib9, None, sim.colorcomponent_ambient_diffuse, [1, 1, 1])
+        if counter &gt; 1 and counter % 10 == 0 and counter != last_executed_multiple + 1:
+            target_angle = math.radians(36)
+            current_angle = sim.getJointPosition(joint4)
+            new_angle = current_angle + target_angle
+            sim.setJointTargetPosition(joint4, new_angle)
+
+    time.sleep(0.01)
+    sysCall_actuation()
+
+
+while True:
+    time.sleep(1)
+    sysCall_actuation()
+    if keyboard.is_pressed('q'):
+        break
+
+print("Simulation Stop")
+print("time stop")
+
+</pre><br />pj3 << <a href='pj3.html'>Previous</a> <a href='記分板.html'>Next</a> >> 記分板</div>
+        
+    <!-- footer -->
+      <div class="container">
+        <div class="row pt-3 mx-auto">
+            <p>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            </p>
+        </div>
+      </div>
+    <!-- for footer -->
+    
+        </div> <!-- for site wrap -->
+            <!-- <script src="../cmsimde/static/chimper/js/jquery-3.3.1.min.js"></script> -->
+            <script src="../cmsimde/static/chimper/js/jquery-migrate-3.0.1.min.js"></script>
+            <script src="../cmsimde/static/chimper/js/jquery-ui.js"></script>
+            <script src="../cmsimde/static/chimper/js/popper.min.js"></script>
+            <script src="../cmsimde/static/chimper/js/bootstrap.min.js"></script>
+            <script src="../cmsimde/static/chimper/js/owl.carousel.min.js"></script>
+            <script src="../cmsimde/static/chimper/js/jquery.stellar.min.js"></script>
+            <script src="../cmsimde/static/chimper/js/jquery.countdown.min.js"></script>
+            <script src="../cmsimde/static/chimper/js/jquery.magnific-popup.min.js"></script>
+            <script src="../cmsimde/static/chimper/js/bootstrap-datepicker.min.js"></script>
+            <script src="../cmsimde/static/chimper/js/aos.js"></script>
+            <!--
+            <script src="../cmsimde/static/chimper/js/typed.js"></script>
+                    <script>
+                    var typed = new Typed('.typed-words', {
+                    strings: ["Web Apps"," WordPress"," Mobile Apps"],
+                    typeSpeed: 80,
+                    backSpeed: 80,
+                    backDelay: 4000,
+                    startDelay: 1000,
+                    loop: true,
+                    showCursor: true
+                    });
+                    </script>
+            -->
+            <script src="../cmsimde/static/chimper/js/main.js"></script>
+        
+<!-- 啟用 LaTeX equations 編輯 -->
+  <!-- <script>
+  MathJax = {
+    tex: {inlineMath: [['$', '$'], ['\(', '\)']]}
+  };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>-->
+    </body></html>
+        
