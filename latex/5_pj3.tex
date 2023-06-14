@@ -2,7 +2,9 @@
 
 \section{程式}
 
-操控球員程式:
+\begin{flushleft}
+\fontsize{14pt}{20pt}\sectionef\hspace{12pt}\quad 操控球員程式:
+\end{flushleft}
 \begin{lstlisting}[language=Python, frame=single, numbers=left, captionpos=b, basicstyle=\ttfamily\small, showstringspaces=false, breaklines=true, tabsize=4, xleftmargin=15pt]
 # pip install pyzmq cbor keyboard
 from zmqRemoteApi_IPv6 import RemoteAPIClient
@@ -53,6 +55,9 @@ while True:
         setBubbleRobVelocity(0.0, 0.0, 0.0, 0.0)
 \end{lstlisting}
 
+\begin{flushleft}
+\fontsize{14pt}{20pt}\sectionef\hspace{12pt}\quad 操控計分版、計時器、得分球員顯示器之程式:
+\end{flushleft}
 
 \begin{lstlisting}[language=Python, frame=single, numbers=left, captionpos=b, basicstyle=\ttfamily\small, showstringspaces=false, breaklines=true, tabsize=4, xleftmargin=15pt]
 from zmqRemoteApi_IPv6 import RemoteAPIClient
